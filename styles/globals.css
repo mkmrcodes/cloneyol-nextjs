@@ -1,16 +1,62 @@
-html,
+@import url(toast.css);
+@import url(magnifier.css);
+@import url(typography.css);
+@import url(slick.css);
+@import url(slicktheme.css);
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  @apply font-body;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+@layer components {
+  .btn-primary-outline {
+    @apply w-full h-8 mt-2 bg-white hover:bg-primary text-primary hover:text-white border border-primary text-sm font-bold rounded-sm inline-flex justify-center items-center tracking-wide focus:outline-none active:outline-none;
+  }
+  .btn-primary {
+    @apply w-full h-8 mt-2 bg-primary text-white text-sm font-bold rounded-sm inline-flex justify-center items-center tracking-wide focus:outline-none active:outline-none;
+  }
+  .btn-success {
+    @apply w-full h-8 mt-2 bg-green-700 text-white text-sm font-bold rounded-sm inline-flex justify-center items-center tracking-wide focus:outline-none active:outline-none;
+  }
+  .btn-loading {
+    @apply w-full h-8 mt-2 bg-primary text-white text-sm font-bold rounded-sm inline-flex justify-center items-center tracking-wide focus:outline-none active:outline-none;
+  }
 }
 
-* {
-  box-sizing: border-box;
+.button-animation:hover {
+  transition: background-color 0.3s ease;
+}
+.button-success-animation {
+  animation: MoveUp 1s;
+  animation: MoveDown 3s;
+}
+
+@keyframes MoveUp {
+  0% {
+    transform: translate3d(0, 0, 0);
+    opacity: 0;
+  }
+  100% {
+    transform: translate3d(0, -35px, 0);
+    opacity: 1;
+    z-index: 2;
+  }
+}
+@keyframes MoveDown {
+  0% {
+    transform: translate3d(0, -35px, 0);
+    opacity: 1;
+  }
+  90% {
+    transform: translate3d(0, -35px, 0);
+    opacity: 1;
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+    z-index: 0;
+    opacity: 0;
+  }
 }

@@ -1,65 +1,56 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import Image from 'next/image';
+import SlickBar from '../components/brand-bar/SlickBar';
+import Campaigns from '../components/mainpage/campaigns';
+import SideSliders from '../components/mainpage/SideSliders';
+import PCard from '../components/product/PCard';
+import { useCookies } from 'react-cookie';
+import { useEffect } from 'react';
+import axios from 'axios';
 
-export default function Home() {
+export default function HomePage() {
+  const [cookie, setCookie] = useCookies(['_ym_uid']);
+  useEffect(async () => {
+    if (localStorage._ym_uid === undefined) {
+      const basket = await axios.post('http://localhost:3001/api/basket', {});
+      console.log(basket.data);
+      const _ym_uid = basket.data.id;
+      localStorage.setItem('_ym_uid', _ym_uid);
+      setCookie('_ym_uid', _ym_uid, {
+        path: '/',
+        sameSite: true,
+      });
+    }
+  }, []);
+
   return (
-    <div className={styles.container}>
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
+    <div>
+      <div className={'w-full md:w-10/12 max-w-screen-xl mx-auto bg-white'}>
+        <div className={'mt-4'}>
+          <SlickBar />
         </div>
-      </main>
 
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
-      </footer>
+        <div className={'grid grid-cols-12 gap-6 mt-4'}>
+          <div className={'col-span-8 h-screen bg-white'}>
+            <Campaigns />
+          </div>
+          <div className={'col-span-4 h-screen bg-white'}>
+            <SideSliders />
+          </div>
+        </div>
+        {/* <h1 className={'text-center mt-4'}>Products</h1>
+        <div className={'mx-2'}>
+          <ProductList data={data} />
+        </div> */}
+      </div>
     </div>
-  )
+  );
 }
+// export async function getStaticProps() {
+//   const res = await fetch(`${nestApiUrl}/items`);
+//   const data = await res.json();
+
+//   return {
+//     props: { data },
+//     revalidate: 1800,
+//   };
+// }
