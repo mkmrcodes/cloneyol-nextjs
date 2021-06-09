@@ -4,6 +4,7 @@ import * as Yup from 'yup';
 import axios from 'axios';
 import FormikControl from './FormikControl';
 import { ToastContainer, toast } from 'react-toastify';
+import { nestApiBaseUrl } from '../utils/constants';
 
 const AddProductForm = () => {
   const [isMsgSentProgress, setIsMsgSentProgress] = useState(false);
@@ -17,7 +18,7 @@ const AddProductForm = () => {
     const fileData = new FormData();
     fileData.append('productImg', selectedFile, selectedFile.name);
 
-    const res = await axios.post('http://localhost:3001/upload', fileData);
+    const res = await axios.post(`${nestApiBaseUrl}/upload`, fileData);
     console.log(res.data);
   };
 
@@ -40,7 +41,7 @@ const AddProductForm = () => {
     const productImg = `/images/${selectedFile.name}`;
     console.log('productimg: ', productImg);
     console.log('vales', values);
-    const response = await fetch('http://localhost:3001/items', {
+    const response = await fetch(`${nestApiUrl}/items`, {
       method: 'POST',
       headers: {
         Accept: 'application/json',

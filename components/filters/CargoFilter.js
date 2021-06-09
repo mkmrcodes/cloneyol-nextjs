@@ -1,30 +1,20 @@
-const CargoFilter = () => {
+import Link from 'next/link';
+import { MdCheckBoxOutlineBlank } from 'react-icons/md';
+
+const CargoFilter = ({ catId, brandId }) => {
+  const url =
+    `/sr?wc=${catId}` + (brandId ? `&wb=${brandId}` : '') + '&fc=true';
   return (
     <div className={'py-2 text-sm border-b'}>
-      <a href={'#'}>
-        <label
-          className={
-            'flex items-center ml-0.5 text-black text-sm cursor-pointer '
-          }
-          htmlFor={'cargo'}
-        >
-          <input
-            id={'cargo'}
-            type='checkbox'
-            className={
-              'border-gray-300 rounded-sm checked:bg-primary checked:border-primary checked:focus:bg-primary checked:hover:bg-primary hover:border-gray-400 focus:ring-0 focus:ring-offset-0'
-            }
-            value='false'
-          />
-          <div
-            className={
-              'p-0.5 ml-1 cursor-pointer hover:text-gray-400 label-cb-checked:font-bold'
-            }
-          >
-            {'Kargo Bedava'}
+      <Link href={url}>
+        <a>
+          <div className={'flex cursor-pointer'}>
+            <MdCheckBoxOutlineBlank className={'w-5 h-5 text-gray-300 mr-1'} />
+
+            <span>Kargo Bedava</span>
           </div>
-        </label>
-      </a>
+        </a>
+      </Link>
     </div>
   );
 };

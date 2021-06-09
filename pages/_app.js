@@ -3,6 +3,7 @@ import { CookiesProvider } from 'react-cookie';
 import { Provider } from 'next-auth/client';
 import Layout from '../components/layout/layout';
 import { BasketProvider } from '../store/BasketProvider';
+import { ListingProvider } from '../store/listing/ListingProvider';
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -10,7 +11,9 @@ function MyApp({ Component, pageProps }) {
       <CookiesProvider>
         <BasketProvider>
           <Layout>
-            <Component {...pageProps} />
+            <ListingProvider>
+              <Component {...pageProps} />
+            </ListingProvider>
           </Layout>
         </BasketProvider>
       </CookiesProvider>

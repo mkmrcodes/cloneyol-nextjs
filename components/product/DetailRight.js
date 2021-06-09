@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import Modal from 'react-modal';
 import DetailRating from './DetailRating';
 import { RiShoppingBagFill } from 'react-icons/ri';
@@ -8,11 +8,18 @@ import { ImHeart } from 'react-icons/im';
 import { IoMdHeartEmpty } from 'react-icons/io';
 import ShippingPeriod from './ShippingPeriod';
 import ReturnModal from './ReturnModal';
+import { BasketContext } from '../../store/BasketContext';
 
 Modal.setAppElement('#__next');
 
 const DetailRight = ({ product }) => {
   const [modalIsOpen, setIsOpen] = useState(false);
+  const { addBasket } = useContext(BasketContext);
+  function handleAddBasket() {
+    const item = Object.assign({ qty: 1, product: product });
+    //console.log(item);
+    addBasket(item, localStorage._ym_uid);
+  }
   return (
     <div className={'flex flex-col mt-8'}>
       <div className={'relative flex flex-col border p-4'}>
@@ -32,15 +39,15 @@ const DetailRight = ({ product }) => {
               }
             >
               <div className={'line-through'}>{product.oldPrice} TL</div>
-              <div className={'line-through'}>{product.price} TL</div>
+              {/* <div className={'line-through'}>{product.price} TL</div> */}
             </div>
             <div className={'border-l m-2'}></div>
             <div className={'flex flex-col justify-center'}>
-              <div className={'text-xs font-bold'}>
+              {/* <div className={'text-xs font-bold'}>
                 Sepette %{product.promotion.promotionDiscount} İndirim
-              </div>
+              </div> */}
               <div className={'text-2xl text-primary font-bold font-display'}>
-                {product.discountPrice} TL
+                {product.price} TL
               </div>
             </div>
           </div>
@@ -118,6 +125,7 @@ const DetailRight = ({ product }) => {
             className={
               'flex-grow h-[50px] text-xl font-bold bg-primary text-white mr-4'
             }
+            onClick={handleAddBasket}
           >
             Sepete Ekle
           </button>
@@ -169,7 +177,7 @@ const DetailRight = ({ product }) => {
           </li>
           <li>
             Bu üründen en fazla 10 adet sipariş verilebilir. 10 adetin
-            üzerindeki siparişleri Trendyol iptal etme hakkını saklı tutar.
+            üzerindeki siparişleri iptal etme hakkını saklı tutar.
           </li>
           <li>
             Kampanya fiyatından satılmak üzere 100 adetten fazla stok

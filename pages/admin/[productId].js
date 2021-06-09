@@ -2,7 +2,7 @@ import axios from 'axios';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import useSWR from 'swr';
-import EditProduct from '../../components/EditProduct';
+import EditProduct from '../../components/admin/EditProduct';
 import { nestApiUrl } from '../../utils/constants';
 
 const ProductEditPage = () => {

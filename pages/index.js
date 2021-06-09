@@ -1,17 +1,16 @@
-import Image from 'next/image';
 import SlickBar from '../components/brand-bar/SlickBar';
 import Campaigns from '../components/mainpage/campaigns';
 import SideSliders from '../components/mainpage/SideSliders';
-import PCard from '../components/product/PCard';
 import { useCookies } from 'react-cookie';
 import { useEffect } from 'react';
 import axios from 'axios';
+import { nestApiUrl } from '../utils/constants';
 
 export default function HomePage() {
   const [cookie, setCookie] = useCookies(['_ym_uid']);
   useEffect(async () => {
     if (localStorage._ym_uid === undefined) {
-      const basket = await axios.post('http://localhost:3001/api/basket', {});
+      const basket = await axios.post(`${nestApiUrl}/basket`, {});
       console.log(basket.data);
       const _ym_uid = basket.data.id;
       localStorage.setItem('_ym_uid', _ym_uid);
@@ -37,20 +36,7 @@ export default function HomePage() {
             <SideSliders />
           </div>
         </div>
-        {/* <h1 className={'text-center mt-4'}>Products</h1>
-        <div className={'mx-2'}>
-          <ProductList data={data} />
-        </div> */}
       </div>
     </div>
   );
 }
-// export async function getStaticProps() {
-//   const res = await fetch(`${nestApiUrl}/items`);
-//   const data = await res.json();
-
-//   return {
-//     props: { data },
-//     revalidate: 1800,
-//   };
-// }

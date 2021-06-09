@@ -1,6 +1,7 @@
 import axios from 'axios';
 import DetailRight from '../../components/product/DetailRight';
 import DetailLeft from '../../components/product/DetailLeft';
+import { nestApiUrl } from '../../utils/constants';
 
 const productDetails = ({ product }) => {
   return (
@@ -9,7 +10,7 @@ const productDetails = ({ product }) => {
     >
       <div className={'flex'}>
         <div className={'w-[55%]'}>
-          <DetailLeft />
+          <DetailLeft product={product} />
         </div>
         <div className={'w-[45%]'}>
           <DetailRight product={product} />
@@ -25,7 +26,7 @@ const productDetails = ({ product }) => {
 };
 
 export async function getStaticPaths() {
-  const response = await axios.get(`http://localhost:3001/api/items`);
+  const response = await axios.get(`${nestApiUrl}/items`);
 
   const paths = response.data.map((product) => ({
     params: {
@@ -43,9 +44,7 @@ export async function getStaticProps({ params }) {
     productDetails.lastIndexOf('-p-') + 3
   );
 
-  const response = await axios.get(
-    `http://localhost:3001/api/items/${productId}`
-  );
+  const response = await axios.get(`${nestApiUrl}/items/${productId}`);
 
   const product = await response.data;
 

@@ -1,5 +1,4 @@
 import Slider from 'react-slick';
-import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 import ReactImageMagnify from '@milosmladenovicwork/react-image-magnify';
 
@@ -90,7 +89,7 @@ function CustomPrevArrow(props) {
   );
 }
 
-const DetailLeft = () => {
+const DetailLeft = ({ product }) => {
   const [nav1, setNav1] = useState(null);
   const [nav2, setNav2] = useState(null);
   const [slider1, setSlider1] = useState(null);
@@ -109,7 +108,7 @@ const DetailLeft = () => {
   const rimProps = {
     enlargedImagePortalId: 'portal',
     enlargedImageContainerDimensions: {
-      width: '100%',
+      width: '150%',
       height: '100%',
     },
   };
@@ -127,48 +126,35 @@ const DetailLeft = () => {
             <div className={''} onMouseEnter={() => gotoSlide(0)}>
               <img
                 className={'w-20 border hover:border-red-600'}
-                src={'/images/1_org.jpg'}
+                src={product.image}
               />
             </div>
-
-            {/* <div className={''} onMouseEnter={() => gotoSlide(1)}>
-              <img
-                className={'w-20 border hover:border-red-600'}
-                src={'/images/2_org.jpg'}
-              />
-            </div>
-            <div className={''} onMouseEnter={() => gotoSlide(2)}>
-              <img
-                className={'w-20 border hover:border-red-600'}
-                src={'/images/3_org.jpg'}
-              />
-            </div> */}
           </Slider>
         </div>
-        <div className='w-[80%]'>
-          <div className={'w-full'}>
-            <Slider
+
+        <div className={'w-[80%]'}>
+          {/* <Slider
               {...settingsMain}
               asNavFor={nav2}
               ref={(slider) => setSlider1(slider)}
-            >
-              <ReactImageMagnify
-                {...{
-                  smallImage: {
-                    alt: 'Wristwatch by Ted Baker London',
-                    isFluidWidth: true,
-                    src: '/images/1_org_zoom.jpg',
-                  },
-                  largeImage: {
-                    src: '/images/1_org_zoom.jpg',
-                    width: 830,
-                    height: 1244,
-                  },
-                  lensStyle: { backgroundColor: 'rgba(0,0,0,.3)' },
-                }}
-                {...rimProps}
-              />
-              {/* <img
+            > */}
+          <ReactImageMagnify
+            {...{
+              smallImage: {
+                alt: product.name,
+                isFluidWidth: true,
+                src: product.image,
+              },
+              largeImage: {
+                src: product.zoomImg,
+                width: 830,
+                height: 1244,
+              },
+              lensStyle: { backgroundColor: 'rgba(0,0,0,.3)' },
+            }}
+            {...rimProps}
+          />
+          {/* <img
               className={'slick-slide-image border'}
               src={'/images/1_org.jpg'}
             />
@@ -180,8 +166,7 @@ const DetailLeft = () => {
               className={'slick-slide-image border'}
               src={'/images/3_org.jpg'}
             /> */}
-            </Slider>
-          </div>
+          {/* </Slider> */}
         </div>
       </div>
     </>

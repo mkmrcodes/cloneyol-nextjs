@@ -23,7 +23,7 @@ const PriceSearch = ({ prc, priceRanges, url }) => {
                   <IoMdRadioButtonOn className={'w-5 h-5 text-primary mr-1'} />
                 ) : (
                   <IoMdRadioButtonOff
-                    className={'w-5 h-5 text-gray-400 mr-1'}
+                    className={'w-5 h-5 text-gray-300 mr-1'}
                   />
                 )}
                 <span className={'hover:text-gray-400'}>{`${range} TL`} </span>

@@ -4,7 +4,6 @@ const RelatedCategorySearch = (props) => {
   const { wb } = props;
   const leafs = props.filter.data.categoryLeafs;
   const ancestors = props.filter.data.ancestors;
-  const reversed = [...ancestors].reverse();
 
   return (
     <div className={'py-2 text-sm border-b'}>
@@ -24,7 +23,7 @@ const RelatedCategorySearch = (props) => {
               </Link>
             );
           })
-        : reversed.map((cat, index) => {
+        : ancestors.map((cat, index) => {
             return (
               <Link
                 key={index}

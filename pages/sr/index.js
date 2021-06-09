@@ -9,6 +9,9 @@ import PriceSearch from '../../components/sr/PriceSearch';
 import RatingSearch from '../../components/sr/RatingSearch';
 import { useContext } from 'react';
 import { BasketContext } from '../../store/BasketContext';
+import FilterDropDown from '../../components/product/FilterDropDown';
+import { nestApiUrl } from '../../utils/constants';
+import Link from 'next/link';
 
 const SearchPage = ({ filter, products, wc, wb, fc, prc, pr }) => {
   const { basketItems, addBasket } = useContext(BasketContext);
@@ -18,6 +21,8 @@ const SearchPage = ({ filter, products, wc, wb, fc, prc, pr }) => {
   const selectedBrands = filter.data.selectedFilters.brands;
   const priceRanges = filter.data.selectedFilters.priceRanges;
   const ratingsArr = filter.data.selectedFilters.ratingsArray;
+  const a = filter.data.ancestors;
+  const ancestors = [...a].reverse();
   const reqUrl = filter.data.selectedFilters.reqUrl;
 
   function handleClear({ wbf, fcf, prcf, prf }) {
@@ -69,20 +74,38 @@ const SearchPage = ({ filter, products, wc, wb, fc, prc, pr }) => {
       >
         +
       </button> */}
-      <div className={'flex items-center text-sm my-2'}>
-        <div>{`AnaSyafa`}</div>
-        <span className={'text-primary px-2'}>
-          <MdKeyboardArrowRight />
-        </span>
-        <div>{`Süpermarket`}</div>
-        <span className={'text-primary px-2'}>
-          <MdKeyboardArrowRight />
-        </span>
-        <div>{`Ev Bakım ve Temizlik`}</div>
-        <span className={'text-primary px-2'}>
-          <MdKeyboardArrowRight />
-        </span>
-        <div>{`Çamaşır Yıkama Ürünleri`}</div>
+      <div className={'flex items-center text-sm pt-2'}>
+        <Link href={'/'}>
+          <a className={'hover:underline'}>
+            <div className={'flex items-center'}>
+              {`AnaSayfa`}
+              <MdKeyboardArrowRight className={'text-primary w-5 h-5'} />
+            </div>
+          </a>
+        </Link>
+
+        {ancestors.map((cat, index) => {
+          return (
+            <Link key={index} href={`/${cat.catSlug}-x-c${cat.id}`}>
+              <a className={'hover:underline'}>
+                <div
+                  key={index}
+                  className={
+                    'flex items-center ' +
+                    (index === ancestors.length - 1 ? 'font-bold' : '')
+                  }
+                >
+                  {cat.catLabel}
+                  {index !== ancestors.length - 1 ? (
+                    <MdKeyboardArrowRight className={'text-primary w-5 h-5'} />
+                  ) : (
+                    ''
+                  )}
+                </div>
+              </a>
+            </Link>
+          );
+        })}
       </div>
 
       <div className={'flex'}>
@@ -107,19 +130,7 @@ const SearchPage = ({ filter, products, wc, wb, fc, prc, pr }) => {
             <div className={'text-lg font-bold'}>
               {`"${category.catLabel}" araması için ${products.length} sonuç listeleniyor`}
             </div>
-            <select
-              className={
-                'form-select text-xs text-muted rounded-sm border-gray-300 focus:ring-0 focus:outline-none focus:border-gray-300'
-              }
-            >
-              <option>Önerilen Sıralama</option>
-              <option>En düşük fiyat</option>
-              <option>En yüksek fiyat</option>
-              <option>En yeniler</option>
-              <option>En çok satanlar</option>
-              <option>En çok beğenilenler</option>
-              <option>En çok değerlendirilenler</option>
-            </select>
+            <FilterDropDown />
           </div>
           <div className={'flex flex-wrap mt-2'}>
             {wb &&
@@ -205,14 +216,14 @@ const SearchPage = ({ filter, products, wc, wb, fc, prc, pr }) => {
               </div>
             )}
           </div>
-          <FilteredProducts products={products} />
+          <FilteredProducts products={products} reqUrl={reqUrl} />
         </div>
       </div>
     </div>
   );
 };
 export const getServerSideProps = async (ctx) => {
-  const BASEURL = 'http://localhost:3001/api';
+  const BASEURL = `${nestApiUrl}`;
   const reqUrl = decodeURIComponent(ctx.resolvedUrl);
 
   //console.log('req: ', reqUrl);

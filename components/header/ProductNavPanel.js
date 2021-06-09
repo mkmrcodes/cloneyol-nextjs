@@ -18,7 +18,7 @@ const Category = ({ setOnHover }) => {
             Ev & Temizlik
           </a>
         </Link>
-        <Link href={'/camasir-yikama-urunleri-x-c3'}>
+        <Link href={'/camasir-yikama-x-c3'}>
           <a
             className={'text-sm text-gray-500 hover:text-primary'}
             onClick={handleClick}
@@ -26,7 +26,7 @@ const Category = ({ setOnHover }) => {
             Çamaşır Yıkama
           </a>
         </Link>
-        <Link href={'/camasir-yikama-urunleri-x-c3'}>
+        <Link href={'/camasir-yikama-x-c3'}>
           <a
             className={'text-sm text-gray-500 hover:text-primary'}
             onClick={handleClick}
@@ -34,7 +34,7 @@ const Category = ({ setOnHover }) => {
             Çamaşır Yıkama
           </a>
         </Link>
-        <Link href={'/camasir-yikama-urunleri-x-c3'}>
+        <Link href={'/camasir-yikama-x-c3'}>
           <a
             className={'text-sm text-gray-500 hover:text-primary'}
             onClick={handleClick}
@@ -42,7 +42,7 @@ const Category = ({ setOnHover }) => {
             Çamaşır Yıkama
           </a>
         </Link>
-        <Link href={'/camasir-yikama-urunleri-x-c3'}>
+        <Link href={'/camasir-yikama-x-c3'}>
           <a
             className={'text-sm text-gray-500 hover:text-primary'}
             onClick={handleClick}
@@ -50,7 +50,7 @@ const Category = ({ setOnHover }) => {
             Çamaşır Yıkama
           </a>
         </Link>
-        <Link href={'/camasir-yikama-urunleri-x-c3'}>
+        <Link href={'/camasir-yikama-x-c3'}>
           <a
             className={'text-sm text-gray-500 hover:text-primary'}
             onClick={handleClick}

@@ -98,7 +98,7 @@ export const ProfileLink = () => {
         className='w-40 hidden left-[50%] -ml-20 absolute group-hover:block border rounded-sm bg-white'
         aria-label='submenu'
       >
-        <li className={'m-2 cursor-pointer bg-white'}>
+        {/* <li className={'m-2 cursor-pointer bg-white'}>
           <Link href='/login'>
             <div
               className={'m-3 p-2 bg-primary text-white text-center font-bold'}
@@ -115,7 +115,7 @@ export const ProfileLink = () => {
               Değerlendirmelerim
             </div>
           </Link>
-        </li>
+        </li> */}
         <li className={' m-2 cursor-pointer bg-white'} onClick={handleLogout}>
           <div
             className={'m-3 p-2 bg-primary text-white text-center font-bold'}

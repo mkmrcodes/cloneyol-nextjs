@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useReducer } from 'react';
+import { nestApiUrl } from '../utils/constants';
 import basketTypes from './basket.types';
 import { BasketContext } from './BasketContext';
 import { basketReducer, BASKET_INITIAL_STATE } from './basketReducer';
@@ -16,7 +17,7 @@ export function BasketProvider({ children }) {
   const { basketItems } = store;
 
   async function addDbBasket(itemId, basketId) {
-    await axios.post('http://localhost:3001/api/basketitem/', {
+    await axios.post(`${nestApiUrl}/basketitem/`, {
       basket: basketId,
       product: itemId,
       qty: 1,
@@ -24,17 +25,17 @@ export function BasketProvider({ children }) {
   }
   async function decrementQtyDbBasket(itemId, basketId) {
     await axios.get(
-      `http://localhost:3001/api/basketitem/decqty/?basket=${basketId}&item=${itemId}`
+      `${nestApiUrl}/basketitem/decqty/?basket=${basketId}&item=${itemId}`
     );
   }
   async function incrementQtyDbBasket(itemId, basketId) {
     await axios.get(
-      `http://localhost:3001/api/basketitem/incqty/?basket=${basketId}&item=${itemId}`
+      `${nestApiUrl}/basketitem/incqty/?basket=${basketId}&item=${itemId}`
     );
   }
   async function removeDbBasketItem(itemId, basketId) {
     await axios.get(
-      `http://localhost:3001/api/basketitem/remove/?basket=${basketId}&item=${itemId}`
+      `${nestApiUrl}/basketitem/remove/?basket=${basketId}&item=${itemId}`
     );
   }
 

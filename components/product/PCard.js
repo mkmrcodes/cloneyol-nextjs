@@ -25,7 +25,7 @@ const PCard = ({ product, promotion }) => {
                   />
                 </div>
               </div>
-              {promotion && (
+              {/* {promotion && (
                 <div
                   className={
                     'flex w-32 justify-center mx-auto rounded-sm text-xxs bg-primary text-center text-white p-0.5 z-2'
@@ -33,7 +33,7 @@ const PCard = ({ product, promotion }) => {
                 >
                   {promotion}
                 </div>
-              )}
+              )} */}
               <div className={'p-2'}>
                 <div
                   className={
@@ -62,7 +62,7 @@ const PCard = ({ product, promotion }) => {
                           className={'text-muted line-through'}
                         >{`${product.oldPrice} TL`}</div>
                       )}
-                      {product.discountRatio && product.price && (
+                      {product.discountPrice && product.price && (
                         <div
                           className={'text-muted line-through'}
                         >{`${product.price} TL`}</div>
@@ -71,11 +71,11 @@ const PCard = ({ product, promotion }) => {
                   </div>
                   <div className={'col-span-8'}>
                     <div className={'flex flex-col justify-center'}>
-                      {product.discountRatio && (
+                      {/* {product.discountRatio && (
                         <div
                           className={'text-xs font-bold'}
                         >{`Sepette %${product.discountRatio} İndirim`}</div>
-                      )}
+                      )} */}
                       {product.discountPrice && (
                         <div
                           className={

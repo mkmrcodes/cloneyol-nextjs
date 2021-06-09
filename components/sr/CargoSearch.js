@@ -17,7 +17,9 @@ const CargoSearch = ({ fc, url }) => {
             {fc ? (
               <MdCheckBox className={'w-5 h-5 text-primary mr-1'} />
             ) : (
-              <MdCheckBoxOutlineBlank className={'w-5 h-5 text-muted mr-1'} />
+              <MdCheckBoxOutlineBlank
+                className={'w-5 h-5 text-gray-300 mr-1'}
+              />
             )}
             <span>Kargo Bedava</span>
           </div>

@@ -1,11 +1,16 @@
 import Slider from 'react-slick';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const campaigns = [];
 for (let i = 1; i <= 3; i++) {
   campaigns.push(
     <div key={i} className={'cursor-pointer'}>
-      <Image src={'/images/sideslider.png'} width={334} height={314} />
+      <Link href={`/ev-bakim-ve-temizlik-x-c2`}>
+        <a>
+          <Image src={'/images/sideslider.png'} width={334} height={314} />
+        </a>
+      </Link>
     </div>
   );
 }

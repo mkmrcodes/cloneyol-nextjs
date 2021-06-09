@@ -1,40 +1,33 @@
-const ratings = [
-  { link: '/', title: '4 Yıldız ve Üzeri' },
-  { link: '/', title: '3 Yıldız ve Üzeri' },
-  { link: '/', title: '2 Yıldız ve Üzeri' },
-  { link: '/', title: '1 Yıldız ve Üzeri' },
-];
+import Link from 'next/link';
+import { MdCheckBoxOutlineBlank } from 'react-icons/md';
 
-const RatingFilter = () => {
+const RatingFilter = ({ ratingsArr, catId, brandId }) => {
+  const ratingsTexts = [
+    '1 Yıldız ve Üzeri',
+    '2 Yıldız ve Üzeri',
+    '3 Yıldız ve Üzeri',
+    '4 Yıldız ve Üzeri',
+  ];
   return (
     <div className={'py-2 text-sm border-b'}>
       <div className={'font-bold'}>Ürün Değerlendirmesi</div>
-      {ratings.map((rating, index) => {
+      {ratingsArr.map((r, index) => {
+        const url =
+          `/sr?wc=${catId}` + (brandId ? `&wb=${brandId}` : '') + `&pr=${r}`;
         return (
-          <a key={index} href={'#'}>
-            <label
-              className={
-                'flex items-center ml-0.5 text-black text-sm cursor-pointer '
-              }
-              htmlFor={rating.title}
-            >
-              <input
-                id={rating.title}
-                type='checkbox'
-                className={
-                  'border-gray-300 rounded-sm checked:bg-primary checked:border-primary checked:focus:bg-primary checked:hover:bg-primary hover:border-gray-400 focus:ring-0 focus:ring-offset-0'
-                }
-                value='false'
-              />
-              <div
-                className={
-                  'p-0.5 ml-1 cursor-pointer hover:text-gray-400 label-cb-checked:font-bold'
-                }
-              >
-                {rating.title}
+          <Link key={index} href={url}>
+            <a>
+              <div className={'flex cursor-pointer mt-1'}>
+                <MdCheckBoxOutlineBlank
+                  className={'w-5 h-5 text-gray-300 mr-1'}
+                />
+
+                <span className={'hover:text-gray-400'}>
+                  {ratingsTexts[index]}
+                </span>
               </div>
-            </label>
-          </a>
+            </a>
+          </Link>
         );
       })}
     </div>

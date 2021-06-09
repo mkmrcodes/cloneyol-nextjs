@@ -40,7 +40,7 @@ const SignIn = () => {
       } else if (user.isMerchant) {
         router.replace('/merchant');
       }
-      router.replace('/');
+      router.replace('/basket');
     }
   }
 

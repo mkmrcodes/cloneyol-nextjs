@@ -12,7 +12,7 @@ const BrandSearch = ({ filter, wb, wc }) => {
   const category = filter.data.selectedFilters.filters;
 
   return (
-    <div className={'py-2 text-sm border-b'}>
+    <div className={'py-2 text-sm border-b h-64 overflow-y-auto'}>
       <div className={'font-bold'}>Marka</div>
       {brands.map((brand) => {
         //const newArr = brandsArr.filter((brand) => brand !== brand.brand_id);
@@ -24,7 +24,7 @@ const BrandSearch = ({ filter, wb, wc }) => {
                   <MdCheckBox className={'w-5 h-5 text-primary mr-1'} />
                 ) : (
                   <MdCheckBoxOutlineBlank
-                    className={'w-5 h-5 text-gray-400 mr-1'}
+                    className={'w-5 h-5 text-gray-300 mr-1'}
                   />
                 )}
                 <span className={'hover:text-gray-400'}>

@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import AddProduct from '../../components/AddProduct';
+import AddProduct from '../../components/admin/AddProduct';
 
 export default function AddProductPage() {
   return (

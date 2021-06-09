@@ -1,12 +1,8 @@
 import { components } from 'react-select';
 import { ChevronDownIcon } from '@heroicons/react/outline';
 
-// SELECT * FROM category c
-// JOIN category_closure t
-// ON c."parentCatId" = t."catId_descendant"
-// WHERE t."catId_ancestor" = 1
-
-export const nestApiUrl = 'http://localhost:3001/api';
+export const nestApiUrl = 'https://morning-mesa-36922.herokuapp.com/api';
+export const nestApiBaseUrl = 'https://morning-mesa-36922.herokuapp.com';
 
 export const styles4Select = {
   control: (base, state) => ({

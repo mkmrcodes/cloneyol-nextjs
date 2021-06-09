@@ -33,7 +33,7 @@ const SignUp = () => {
       password: values.password,
     });
     if (!result.error) {
-      router.replace('/user');
+      router.replace('/');
     }
   }
 
