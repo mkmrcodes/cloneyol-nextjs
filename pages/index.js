@@ -1,5 +1,5 @@
 import SlickBar from '../components/brand-bar/SlickBar';
-import Campaigns from '../components/mainpage/campaigns';
+import Campaigns from '../components/mainpage/Campaigns';
 import SideSliders from '../components/mainpage/SideSliders';
 import { useCookies } from 'react-cookie';
 import { useEffect } from 'react';
